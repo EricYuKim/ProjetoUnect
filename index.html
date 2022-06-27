@@ -4,16 +4,18 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>uTask 3.0</title>
     <link rel="stylesheet" href="styles.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    
 
 </head>
 <body>
     <header>
-        <img class="imagem" src="source/LogoBranca.svg" alt="LogoBranca">
+        <img class="logo" src="source/LogoBranca.svg" alt="LogoBranca">
         <h1>uTask 3.0</h1> 
 <label class="switch">
     <input type="checkbox">
@@ -21,36 +23,87 @@
   </label>
     </header>
 
-    <main>
-        
-        <div>
+    <main class="box">
+        <!-- modal -->
+        <div class="modal">
+            <div class="modal-content">
+                <div>
+                    <div class="m1">
+                        <h2>Nova Task</h2>
+                        <button class="fecharmodal" onclick="closemodal()">
+                            <span class="material-icons close">
+                                close
+                                </span>
+                        </button>
+                    </div>
+                    <div class="titulodesc">
+                        <h3>Titulo</h3>
+                        <input type="text" class="txttitulo">
+                        <h3>Descrição</h3>
+                        <button class="task-criar" >
+                            <p >Criar Task</p>
+                            <!-- <input type="text" class="txtdescricao" > -->
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    <!--Modal Delete  -->
+       
+        <!-- Box -->
+    <div class="divP" >
             <div class="AFazer">
                 <h2>A fazer</h2>
+                <button class="abrirmodal" onclick="showmodal()">
+                    <span class="material-icons add ">add</span>
+                </button>
+
+            </div>
+        <div class="EmAndamento">
+                <h2 >Em andamento</h2>
                 <div>
 
                 </div>
             </div>
-            <div class="EmAndamento">
-                <h2>Em andamento</h2>
-                <div>
-
-                </div>
-            </div>
-            <div>
+            <div class="Feito">
                 <h2>Feito</h2>
                 <div>
 
                 </div>
             </div>
+
         </div>
-    </main>
+    <div class="divP2">    
+        <div class="afazer">
+            <div class="task-item">
+                <p>teste</p>
+                <i class="material-icons more_vert" onclick="showmodalDelete()">
+                    more_vert
+                </i>
+                <div class="modalDelete">
+                    <span class="material-icons lixeira ">delete_outline</span>
+                </div>
+        
+            </div>
+        </div>
+        <div class="emandamento">
+            <div class="task-item">
+            </div>
+        </div>
+    <div class="feito">
+        <div class="task-item"></div>
+    </div>
+    </div>
+</main>
 
     <footer>
         <div>
             <p>© Processo de Trainee Unect Jr. 2022.1</p>
-            <p>Feito por Eric</p>
+            
+            <p class="assinatura">Feito com  &nbsp<span class="material-icons coracao"> favorite </span> &nbsp por Eric Yuiti Kimura</p>
         </div>
     </footer>
-   
+   <script src="script.js"></script>
 </body>
 </html>
