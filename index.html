@@ -40,9 +40,9 @@
                         <h3>Titulo</h3>
                         <input type="text" class="txttitulo">
                         <h3>Descrição</h3>
-                        <button class="task-criar" >
+                        <input type="text" class="desc">
+                        <button class="task-criar" onclick="addTask()">
                             <p >Criar Task</p>
-                            <!-- <input type="text" class="txtdescricao" > -->
                         </button>
                     </div>
                 </div>
@@ -76,24 +76,16 @@
         </div>
     <div class="divP2">    
         <div class="afazer">
-            <div class="task-item">
-                <p>teste</p>
-                <i class="material-icons more_vert" onclick="showmodalDelete()">
-                    more_vert
-                </i>
-                <div class="modalDelete">
-                    <span class="material-icons lixeira ">delete_outline</span>
-                </div>
-        
-            </div>
+         
+
         </div>
         <div class="emandamento">
             <div class="task-item">
             </div>
         </div>
-    <div class="feito">
+    <ul class="feito">
         <div class="task-item"></div>
-    </div>
+    </ul>
     </div>
 </main>
 
