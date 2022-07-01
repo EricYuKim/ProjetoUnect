@@ -1,9 +1,107 @@
-const inputElement = document.querySelector(".txttitulo");
-const addTaskButton = document.querySelector(".task-criar");
-const tasksContainer = document.querySelector(".afazer");
+
+let addTaskCriar = document.querySelector(".task-criar");
 
 
 
+
+function addTask(){
+    const nome = document.getElementsByClassName("txttitulo")[0].value;
+    const desc = document.getElementsByClassName("desc")[0].value;
+    if(nome!=""){
+
+    var counter = 0;
+    createTask(nome,desc, counter);
+     nome.value = "";
+
+}}
+
+function createTask(nome, desc,counter){
+    var estado;
+    switch(counter){
+        case 0:
+            estado = document.getElementsByClassName("afazer")[0]
+        break;
+        case 1:
+            estado = document.getElementsByClassName("emandamento")[0]
+
+        break;
+        case 2:
+            estado = document.getElementsByClassName("feito")[0]
+            counter=-1;
+        break;
+    }
+
+    
+    let task = document.createElement('div');
+    task.setAttribute('class','task');
+    estado.appendChild(task);
+
+    let td = document.createElement('div');
+    td.setAttribute('class','td');
+    task.appendChild(td);
+
+    let tituloTask = document.createElement("h1");
+    tituloTask.setAttribute('class','taskTitulo')
+    tituloTask.innerHTML = nome;
+    td.appendChild(tituloTask);
+
+
+
+    let descTask = document.createElement("div");
+    descTask.setAttribute('class','desc');
+    descTask.innerHTML = '<h1 class="taskDesc">Descricao</h1>';
+    td.appendChild(descTask);
+
+    
+    let descNome = document.createElement("p");
+    descNome.setAttribute('class','pDesc')
+    descNome.innerHTML = desc;
+    descTask.appendChild(descNome);
+
+
+    let buttonD = document.createElement("button");
+    buttonD.setAttribute('class','buttonD')
+    buttonD.innerHTML = '<i class="material-icons lixeira ">delete_outline</i>';
+    task.appendChild(buttonD);
+    buttonD.addEventListener('click', function(){removeTask(task)})
+
+ 
+   
+    let next = document.createElement("button");
+    switch(counter){
+        case 0: 
+        next.innerHTML = '<i class="material-icons  ">navigate_next</i>';
+        break;
+        case 1:
+        next.innerHTML= '<i class="material-icons  ">navigate_next</i>';
+        case -1:
+        next.innerHTML = '<i class="material-icons  ">navigate_next</i>';
+        break;
+    }
+   
+    next.addEventListener('click', function(){moveTask(nome,desc,counter,task)})
+    task.appendChild(next);
+
+   counter++;
+
+}
+
+
+
+function moveTask(nome,desc,counter,task){
+    createTask(nome,desc,counter,task);
+    task.remove()
+}
+
+function removeTask(task){ 
+    task.remove();
+
+
+}
+
+
+
+//Modal
 function showmodal(){
     const element = document.getElementsByClassName("modal")[0];
     element.classList.add("show-modal");
@@ -28,129 +126,3 @@ function closemodalDelete(){
 
 
 
-
-
-
-const validateInput = () => inputElement.value.trim().length > 0;
-
-const handleAddTask = () => {
-  const inputIsValid = validateInput();
-
-  console.log(inputIsValid);
-
-  if (!inputIsValid) {
-    return inputElement.classList.add("error");
-  }
-
-  const taskItemContainer = document.createElement("div");
-  taskItemContainer.classList.add("task-item");
-
-  const taskContent = document.createElement("p");
-  taskContent.innerText = inputElement.value;
-
-  taskContent.addEventListener("click", () => handleClick(taskContent));
-
-  const deleteItem = document.createElement("i");
-  deleteItem.classList.add("far");
-  deleteItem.classList.add("fa-trash-alt");
-
-  deleteItem.addEventListener("click", () =>
-    handleDeleteClick(taskItemContainer, taskContent)
-  );
-
-  taskItemContainer.appendChild(taskContent);
-  taskItemContainer.appendChild(deleteItem);
-
-  tasksContainer.appendChild(taskItemContainer);
-
-  inputElement.value = "";
-
-  updateLocalStorage();
-};
-
-const handleClick = (taskContent) => {
-  const tasks = tasksContainer.childNodes;
-
-  for (const task of tasks) {
-    const currentTaskIsBeingClicked = task.firstChild.isSameNode(taskContent);
-
-    if (currentTaskIsBeingClicked) {
-      task.firstChild.classList.toggle("completed");
-    }
-  }
-
-  updateLocalStorage();
-};
-
-const handleDeleteClick = (taskItemContainer, taskContent) => {
-  const tasks = tasksContainer.childNodes;
-
-  for (const task of tasks) {
-    const currentTaskIsBeingClicked = task.firstChild.isSameNode(taskContent);
-
-    if (currentTaskIsBeingClicked) {
-      taskItemContainer.remove();
-    }
-  }
-
-  updateLocalStorage();
-};
-
-const handleInputChange = () => {
-  const inputIsValid = validateInput();
-
-  if (inputIsValid) {
-    return inputElement.classList.remove("error");
-  }
-};
-
-const updateLocalStorage = () => {
-  const tasks = tasksContainer.childNodes;
-
-  const localStorageTasks = [...tasks].map((task) => {
-    const content = task.firstChild;
-    const isCompleted = content.classList.contains("completed");
-
-    return { description: content.innerText, isCompleted };
-  });
-
-  localStorage.setItem("tasks", JSON.stringify(localStorageTasks));
-};
-
-const refreshTasksUsingLocalStorage = () => {
-  const tasksFromLocalStorage = JSON.parse(localStorage.getItem("tasks"));
-
-  if (!tasksFromLocalStorage) return;
-
-  for (const task of tasksFromLocalStorage) {
-    const taskItemContainer = document.createElement("div");
-    taskItemContainer.classList.add("task-item");
-
-    const taskContent = document.createElement("p");
-    taskContent.innerText = task.description;
-
-    if (task.isCompleted) {
-      taskContent.classList.add("completed");
-    }
-
-    taskContent.addEventListener("click", () => handleClick(taskContent));
-
-    const deleteItem = document.createElement("i");
-    deleteItem.classList.add("far");
-    deleteItem.classList.add("fa-trash-alt");
-
-    deleteItem.addEventListener("click", () =>
-      handleDeleteClick(taskItemContainer, taskContent)
-    );
-
-    taskItemContainer.appendChild(taskContent);
-    taskItemContainer.appendChild(deleteItem);
-
-    tasksContainer.appendChild(taskItemContainer);
-  }
-};
-refreshTasksUsingLocalStorage();
-
-addTaskButton.addEventListener("click", () => handleAddTask());
-
-inputElement.addEventListener("change", () => handleInputChange());
