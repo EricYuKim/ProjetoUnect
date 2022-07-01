@@ -94,8 +94,16 @@ line-height: 21px;
 color: #141414;
 }
 
+.buttonD{
+width: 50px;
+height: 50px;
 
-.task-item{
+
+
+border-radius: 20px;
+}
+
+.fazer-item{
   display: flex;
   justify-content: space-between;
 }
@@ -115,29 +123,20 @@ cursor: pointer;
 }
 
 .emandamento{
-  
   width:293px ;
   height: 35px;
-  display: flex;
-  align-items: center;
-  margin-left: 0%;
   overflow: auto;
-  overflow-x: hidden;
-  align-items: center;
-  justify-content: center;
+    overflow-x: hidden;
+ 
   height: 74%;
 }
 .feito{
-  
+
   width:293px ;
   height: 35px;
-  display: flex;
-  align-items: center;
-  margin-left: 0%;
   overflow: auto;
-  overflow-x: hidden;
-  align-items: center;
-  justify-content: center;
+    overflow-x: hidden;
+ 
   height: 74%;
 }
 
@@ -250,7 +249,7 @@ color: #141414;
 
 }
 
-.modal p {
+.btnExcluir{
   
 }
 
@@ -331,11 +330,15 @@ color: #FFFFFF;
   margin: auto;
   margin-top: 0%;
   width: 100vh;
-  height: 50vh;
+  height: 60vh;
   max-width: 100%;
 }
 
 
+.task{
+  margin-top: 10%;
+  display: flex;
+}
 
 main div h2{
   font-family: 'Poppins';
@@ -377,6 +380,68 @@ color: #226ED8;
 
 
 }
+
+.td{
+  width: 50%;
+}
+
+.taskTitulo{
+  width: 192px;
+height: 21px;
+left: 12px;
+top: 12px;
+
+font-family: 'Poppins';
+font-style: normal;
+font-weight: 600;
+font-size: 14px;
+line-height: 21px;
+/* identical to box height */
+
+display: flex;
+align-items: center;
+
+color: #141414;
+}
+
+.taskDesc{
+  margin-top: 7%;
+  width: 192px;
+height: 21px;
+left: 12px;
+top: 12px;
+
+font-family: 'Poppins';
+font-style: normal;
+font-weight: 600;
+font-size: 14px;
+line-height: 21px;
+/* identical to box height */
+
+display: flex;
+align-items: center;
+
+color: #141414;
+
+}
+
+.pDesc{
+  width: 163px;
+height: 36px;
+left: 12px;
+top: 155px;
+
+font-family: 'Poppins';
+font-style: normal;
+font-weight: 400;
+font-size: 12px;
+line-height: 18px;
+display: flex;
+align-items: center;
+
+color: #141414;
+}
+
 .AFazer{
   width: 293px;
   height: 35px;
